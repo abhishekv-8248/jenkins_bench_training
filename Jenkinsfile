@@ -1,17 +1,11 @@
-package benchjenkis.freestyleproject;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-public class jenkinstest {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		WebDriverManager.chromedriver().setup();
-		WebDriver Driver = new ChromeDriver();
-		Driver.get("https://www.google.com");
-	}
-
+/* Requires the Docker Pipeline plugin */
+pipeline {
+    agent { docker { image 'maven:3.9.4-eclipse-temurin-17-alpine' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+    }
 }
